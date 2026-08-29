@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>For Someone Special ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+ min-height:100vh;overflow-x:hidden;font-family:Poppins,sans-serif;color:#fff;
+ background:#0f0618;
+}
+body::before{
+ content:"";position:fixed;inset:-100%;z-index:-5;
+ background:
+ radial-gradient(circle at 20% 20%,#ff4d88 0%,transparent 25%),
+ radial-gradient(circle at 80% 30%,#7d5fff 0%,transparent 25%),
+ radial-gradient(circle at 40% 90%,#ff9bd2 0%,transparent 25%);
+ filter:blur(70px);animation:bgRotate 25s linear infinite;
+}
+@keyframes bgRotate{from{transform:rotate(0) scale(1)}to{transform:rotate(360deg) scale(1.2)}}
+
+.app{width:min(94%,540px);margin:auto;padding:70px 0 40px}
+.glass{
+ background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.2);
+ backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);
+ border-radius:28px;padding:25px;
+ box-shadow:0 25px 70px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.15);
+}
+.title{
+ text-align:center;font:700 52px 'Dancing Script',cursive;
+ text-shadow:0 0 15px hotpink,0 0 35px deeppink;
+ animation:heartBeat 2s infinite;
+}
+.subtitle{text-align:center;opacity:.75;margin:8px 0 25px}
+@keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+
+input,textarea{
+ width:100%;padding:15px;margin-bottom:13px;border-radius:15px;
+ border:1px solid rgba(255,255,255,.2);outline:none;
+ background:rgba(0,0,0,.18);color:white;font:15px Poppins,sans-serif;
+}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.5)}
+textarea{min-height:230px;resize:vertical;line-height:1.7}
+input:focus,textarea:focus{border-color:#ff72a7;box-shadow:0 0 20px rgba(255,80,140,.2)}
+
+button{
+ width:100%;border:0;border-radius:15px;padding:15px;margin:8px 0;
+ cursor:pointer;color:white;font:600 16px Poppins,sans-serif;
+ background:linear-gradient(45deg,#ff4d88,#ff8fab);
+ box-shadow:0 10px 25px rgba(255,60,130,.35);transition:.3s;
+}
+button:hover{transform:translateY(-3px) scale(1.02)}
+.secondary{background:rgba(255,255,255,.1);box-shadow:none}
+
+.recipient{text-align:center;animation:appear .8s ease}
+.creator{animation:appear .8s ease}
+@keyframes appear{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+h2,.creator h2,.recipient h2{
+ font-family:'Dancing Script',cursive;font-size:38px;text-align:center;margin-bottom:18px;
+}
+.open-heart{font-size:80px;margin:15px;display:block;animation:heartBeat 1.5s infinite}
+.recipient-message{opacity:.8;line-height:1.7;margin-bottom:25px}
+
+.reason{
+ display:flex;align-items:center;gap:8px;padding:14px;margin:10px 0;
+ border-radius:15px;background:rgba(255,255,255,.08);
+}
+.reason span{flex:1;text-align:left}
+.remove{width:auto!important;padding:5px 10px!important;margin:0!important;font-size:12px!important}
+
+.photo{width:100%;border-radius:20px;margin-top:15px;display:block;object-fit:cover;max-height:500px}
+.content{
+ margin-top:20px;padding:22px;border-radius:20px;background:rgba(255,255,255,.08);
+ border:1px solid rgba(255,255,255,.15);line-height:1.9;font-size:16px;
+ white-space:pre-wrap;overflow-wrap:anywhere;animation:fade .6s ease;
+}
+@keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+.nav{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px}
+.nav button{margin:0;padding:13px 5px}
+
+.music{
+ position:fixed;right:18px;top:18px;z-index:100;width:58px;height:58px;
+ border-radius:50%;padding:0;font-size:23px;margin:0;
+}
+
+.status{
+ font-size:12px;opacity:.65;margin:-3px 0 12px;line-height:1.5;
+}
+.hidden{display:none!important}
+
+.heart{
+ position:fixed;bottom:-40px;pointer-events:none;z-index:10;
+ animation:floatHeart linear forwards;
+}
+@keyframes floatHeart{
+ 0%{transform:translateY(0) rotate(0);opacity:0}
+ 10%{opacity:1}
+ 100%{transform:translateY(-115vh) translateX(var(--drift)) rotate(360deg);opacity:0}
+}
+
+.sparkle{
+ position:fixed;width:4px;height:4px;background:white;border-radius:50%;
+ pointer-events:none;z-index:1;animation:sparkle 2s infinite alternate;
+}
+@keyframes sparkle{from{opacity:.2;transform:scale(.5)}to{opacity:1;transform:scale(1.5)}}
+
+.confetti{
+ position:fixed;top:-20px;width:9px;height:9px;z-index:999;pointer-events:none;
+ animation:fall 3s linear forwards;
+}
+@keyframes fall{
+ to{transform:translateY(110vh) translateX(var(--x)) rotate(720deg);opacity:0}
+}
+
+footer{text-align:center;opacity:.4;font-size:11px;margin-top:22px}
+
+@media(max-width:500px){
+ .title{font-size:44px}.glass{padding:20px}.nav button{font-size:13px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Music button -->
+<button class="music" id="musicButton" onclick="toggleMusic()">🎵</button>
+
+<!-- The actual local music picker -->
+<input type="file" id="musicPicker" accept="audio/*" hidden>
+
+<div class="app" id="app"></div>
+
+<script>
+/* =========================================================
+   LOVE WEBSITE
+   - Normal URL = Creator mode
+   - #love=... = Recipient mode
+   - Local MP3 can be previewed on the creator's phone.
+   - A local MP3 cannot be transferred through a normal URL.
+   ========================================================= */
+
+let data={
+ name:"",
+ letter:"",
+ reasons:[],
+ promise:"",
+ finalMessage:"",
+ photo:"",
+ music:""
+};
+
+let music=new Audio();
+music.loop=true;
+let musicPlaying=false;
+let localMusicURL="";
+
+/* =========================================================
+   MODE
+========================================================= */
+if(location.hash.startsWith("#love=")){
+ loadRecipient();
+}else{
+ showCreator();
+}
+
+/* =========================================================
+   CREATOR
+========================================================= */
+function showCreator(){
+
+ document.getElementById("app").innerHTML=`
+
+ <div class="glass creator">
+
+   <div class="title">💗 Love Page</div>
+
+   <p class="subtitle">
+     Create something beautiful for someone special.
+   </p>
+
+   <h2>✨ Create Your Page</h2>
+
+   <input id="name" placeholder="Her name ❤️">
+
+   <textarea id="letter"
+     placeholder="Write your entire love letter here...
+
+No word limit ❤️"></textarea>
+
+   <input id="reason"
+     placeholder="Add a reason why you love her...">
+
+   <button onclick="addReason()">❤️ Add Reason</button>
+
+   <div id="reasons"></div>
+
+   <textarea id="promise"
+     placeholder="Write your promise here... 🤍"></textarea>
+
+   <textarea id="final"
+     style="min-height:150px"
+     placeholder="Final message for her... 💗"></textarea>
+
+   <p style="margin-top:15px;opacity:.7">📸 Add a picture</p>
+
+   <input type="file" id="photoPicker" accept="image/*">
+
+   <p style="margin-top:10px;opacity:.7">🎵 Add your music</p>
+
+   <button class="secondary"
+     onclick="document.getElementById('musicPicker').click()">
+     🎵 Choose Music From Phone
+   </button>
+
+   <div id="musicStatus" class="status">
+     No music selected yet.
+   </div>
+
+   <button onclick="generateLink()">
+     💖 GENERATE MY LOVE LINK
+   </button>
+
+   <div id="generated" class="content hidden"></div>
+
+ </div>
+
+ <footer>Made with love ❤️</footer>
+ `;
+
+ document.getElementById("photoPicker")
+   .addEventListener("change",readPhoto);
+}
+
+/* =========================================================
+   REASONS
+========================================================= */
+function addReason(){
+
+ const input=document.getElementById("reason");
+ const text=input.value.trim();
+
+ if(!text)return;
+
+ data.reasons.push(text);
+ input.value="";
+ renderReasons();
+}
+
+function renderReasons(){
+
+ const box=document.getElementById("reasons");
+ box.innerHTML="";
+
+ data.reasons.forEach((reason,index)=>{
+
+   const row=document.createElement("div");
+   row.className="reason";
+
+   const span=document.createElement("span");
+   span.textContent="❤️ "+reason;
+
+   const remove=document.createElement("button");
+   remove.className="remove";
+   remove.textContent="×";
+
+   remove.onclick=()=>{
+     data.reasons.splice(index,1);
+     renderReasons();
+   };
+
+   row.appendChild(span);
+   row.appendChild(remove);
+   box.appendChild(row);
+ });
+}
+
+/* =========================================================
+   PHOTO
+========================================================= */
+function readPhoto(event){
+
+ const file=event.target.files[0];
+
+ if(!file)return;
+
+ /* Avoid making a gigantic URL from an enormous photo. */
+ if(file.size>3*1024*1024){
+   alert("Please choose a photo smaller than 3 MB ❤️");
+   event.target.value="";
+   return;
+ }
+
+ const reader=new FileReader();
+
+ reader.onload=function(){
+   data.photo=reader.result;
+ };
+
+ reader.readAsDataURL(file);
+}
+
+/* =========================================================
+   MUSIC PICKER
+========================================================= */
+document.getElementById("musicPicker").addEventListener("change",function(){
+
+ const file=this.files[0];
+
+ if(!file)return;
+
+ if(localMusicURL){
+   URL.revokeObjectURL(localMusicURL);
+ }
+
+ localMusicURL=URL.createObjectURL(file);
+
+ music.pause();
+ music.src=localMusicURL;
+ music.loop=true;
+
+ const status=document.getElementById("musicStatus");
+
+ if(status){
+   status.textContent="🎵 Selected: "+file.name;
+ }
+
+ /* Browser requires a user gesture; this file selection is one. */
+ music.play().then(()=>{
+
+   musicPlaying=true;
+   document.getElementById("musicButton").textContent="⏸️";
+
+ }).catch(()=>{
+
+   musicPlaying=false;
+   document.getElementById("musicButton").textContent="▶️";
+
+   alert("Music selected! Tap the 🎵 button to start it.");
+
+ });
+
+});
+
+/* =========================================================
+   GENERATE LINK
+========================================================= */
+function generateLink(){
+
+ data.name=document.getElementById("name").value.trim();
+ data.letter=document.getElementById("letter").value.trim();
+ data.promise=document.getElementById("promise").value.trim();
+ data.finalMessage=document.getElementById("final").value.trim();
+
+ if(!data.name){
+   alert("Give her a name first ❤️");
+   return;
+ }
+
+ if(!data.letter){
+   alert("Write the love letter first 💌");
+   return;
+ }
+
+ /*
+   IMPORTANT:
+   localMusicURL is a temporary blob URL and only exists
+   on this device. It must NOT be placed in the share link.
+ */
+ data.music="";
+
+ const encoded=base64Unicode(JSON.stringify(data));
+ const link=location.href.split("#")[0]+"#love="+encoded;
+
+ const output=document.getElementById("generated");
+ output.classList.remove("hidden");
+ output.innerHTML="";
+
+ const title=document.createElement("strong");
+ title.textContent="❤️ Your Love Link";
+ output.appendChild(title);
+
+ const linkInput=document.createElement("input");
+ linkInput.value=link;
+ linkInput.readOnly=true;
+ linkInput.style.marginTop="12px";
+ linkInput.onclick=()=>linkInput.select();
+ output.appendChild(linkInput);
+
+ const copy=document.createElement("button");
+ copy.textContent="📋 Copy Link";
+ copy.onclick=()=>copyLink(link);
+ output.appendChild(copy);
+
+ const note=document.createElement("p");
+ note.style.cssText="font-size:12px;opacity:.6;line-height:1.6";
+ note.textContent=
+   "Your text and photo are included in this prototype link. " +
+   "The local MP3 stays on this phone. To make the same song play for the recipient, " +
+   "the final online version needs music uploaded to cloud storage.";
+ output.appendChild(note);
+}
+
+/* =========================================================
+   COPY LINK
+========================================================= */
+function copyLink(link){
+
+ if(navigator.clipboard){
+
+   navigator.clipboard.writeText(link)
+   .then(()=>alert("❤️ Link copied! Send it to her."))
+   .catch(()=>fallbackCopy(link));
+
+ }else{
+   fallbackCopy(link);
+ }
+}
+
+function fallbackCopy(link){
+
+ const t=document.createElement("textarea");
+ t.value=link;
+ document.body.appendChild(t);
+ t.select();
+ document.execCommand("copy");
+ t.remove();
+
+ alert("❤️ Link copied! Send it to her.");
+}
+
+/* =========================================================
+   RECIPIENT
+========================================================= */
+function loadRecipient(){
+
+ try{
+
+   const encoded=location.hash.substring(6);
+
+   data=JSON.parse(fromBase64Unicode(encoded));
+
+   showOpening();
+
+ }catch(error){
+
+   document.getElementById("app").innerHTML=`
+   <div class="glass recipient">
+     <span class="open-heart">💔</span>
+     <h2>Something went wrong</h2>
+     <p class="recipient-message">
+       This love link appears to be invalid or damaged.
+     </p>
+   </div>`;
+
+ }
+}
+
+/* =========================================================
+   OPENING
+========================================================= */
+function showOpening(){
+
+ document.getElementById("app").innerHTML=`
+
+ <div class="glass recipient">
+
+   <span class="open-heart">💌</span>
+
+   <h2>
+     ${escapeHTML(data.name)}
+   </h2>
+
+   <p class="recipient-message">
+     Someone made something special for you... ❤️
+     <br><br>
+     Take a little moment.
+   </p>
+
+   <button onclick="openLetterPhase()">
+     💌 Open My Letter
+   </button>
+
+ </div>
+ `;
+}
+
+/* =========================================================
+   PHASE 1
+========================================================= */
+function openLetterPhase(){
+ showPhase("💌 My Letter",data.letter);
+}
+
+/* =========================================================
+   PHASE 2
+========================================================= */
+function openReasons(){
+
+ let text="🌹 Why I Love You\n\n";
+
+ if(data.reasons && data.reasons.length){
+
+   data.reasons.forEach(reason=>{
+     text+="❤️ "+reason+"\n\n";
+   });
+
+ }else{
+   text+="Because you're you. ❤️";
+ }
+
+ showPhase("🌹 Why I Love You",text);
+}
+
+/* =========================================================
+   PHASE 3
+========================================================= */
+function openPromise(){
+
+ showPhase(
+   "🤍 My Promise",
+   data.promise || "I promise to keep choosing you. ❤️"
+ );
+}
+
+/* =========================================================
+   PHASE 4
+========================================================= */
+function openFinal(){
+
+ const app=document.getElementById("app");
+
+ app.innerHTML=`
+
+ <div class="glass recipient">
+
+   <span class="open-heart">🎁</span>
+
+   <h2>One Last Thing...</h2>
+
+   ${
+     data.photo
+     ? `<img class="photo" src="${data.photo}" alt="A special memory">`
+     : ""
+   }
+
+   <p class="recipient-message" style="margin-top:20px">
+     ${escapeHTML(
+       data.finalMessage ||
+       "You will always have a special place in my heart. ❤️"
+     )}
+   </p>
+
+   <button onclick="launchConfetti()">
+     🎉 One More Surprise
+   </button>
+
+   <div id="finalReveal" class="content hidden">
+     ❤️
+     <br><br>
+     Forever yours. ♾️
+   </div>
+
+ </div>
+ `;
+}
+
+/* =========================================================
+   PHASE NAVIGATION
+========================================================= */
+function showPhase(title,text){
+
+ const app=document.getElementById("app");
+
+ app.innerHTML=`
+
+ <div class="glass">
+
+   <div class="title" style="font-size:40px">
+     ${title}
+   </div>
+
+   <div class="content" id="typed"></div>
+
+   <div class="nav">
+     <button onclick="openLetterPhase()">💌</button>
+     <button onclick="openReasons()">🌹</button>
+     <button onclick="openPromise()">🤍</button>
+     <button onclick="openFinal()">🎁</button>
+   </div>
+
+ </div>
+ `;
+
+ typeWriter(document.getElementById("typed"),text);
+}
+
+/* =========================================================
+   TYPEWRITER
+========================================================= */
+let typingTimer=null;
+
+function typeWriter(element,text){
+
+ if(typingTimer)clearTimeout(typingTimer);
+
+ element.textContent="";
+ let i=0;
+
+ function type(){
+
+   if(i<text.length){
+
+     element.textContent+=text.charAt(i);
+     i++;
+
+     typingTimer=setTimeout(type,12);
+   }
+ }
+
+ type();
+}
+
+/* =========================================================
+   MUSIC
+========================================================= */
+function toggleMusic(){
+
+ /*
+   Creator:
+   If no music has been selected, open phone picker.
+ */
+ if(!music.src){
+
+   const picker=document.getElementById("musicPicker");
+
+   if(picker){
+     picker.click();
+     return;
+   }
+
+   alert("No music has been attached to this page 🎵");
+   return;
+ }
+
+ if(musicPlaying){
+
+   music.pause();
+   musicPlaying=false;
+   document.getElementById("musicButton").textContent="🎵";
+
+ }else{
+
+   music.play().then(()=>{
+
+     musicPlaying=true;
+     document.getElementById("musicButton").textContent="⏸️";
+
+   }).catch(()=>{
+
+     musicPlaying=false;
+     document.getElementById("musicButton").textContent="▶️";
+
+   });
+ }
+}
+
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+function createHeart(){
+
+ const heart=document.createElement("div");
+ heart.className="heart";
+
+ const emojis=["❤️","💗","💖","💕","💓","💞"];
+
+ heart.textContent=emojis[
+   Math.floor(Math.random()*emojis.length)
+ ];
+
+ heart.style.left=Math.random()*100+"vw";
+ heart.style.fontSize=(18+Math.random()*25)+"px";
+ heart.style.animationDuration=(5+Math.random()*5)+"s";
+ heart.style.setProperty(
+   "--drift",
+   ((Math.random()-.5)*180)+"px"
+ );
+
+ document.body.appendChild(heart);
+
+ setTimeout(()=>heart.remove(),10000);
+}
+
+setInterval(createHeart,400);
+
+/* =========================================================
+   SPARKLES
+========================================================= */
+for(let i=0;i<70;i++){
+
+ const s=document.createElement("div");
+ s.className="sparkle";
+
+ s.style.left=Math.random()*100+"vw";
+ s.style.top=Math.random()*100+"vh";
+ s.style.animationDelay=Math.random()*3+"s";
+
+ document.body.appendChild(s);
+}
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+function launchConfetti(){
+
+ const reveal=document.getElementById("finalReveal");
+
+ if(reveal)reveal.classList.remove("hidden");
+
+ const colors=[
+   "#ff4d88",
+   "#ffd166",
+   "#ffffff",
+   "#ff9bd2",
+   "#7d5fff"
+ ];
+
+ for(let i=0;i<150;i++){
+
+   const c=document.createElement("div");
+   c.className="confetti";
+
+   c.style.left=Math.random()*100+"vw";
+   c.style.setProperty(
+     "--x",
+     ((Math.random()-.5)*500)+"px"
+   );
+
+   c.style.background=
+     colors[Math.floor(Math.random()*colors.length)];
+
+   document.body.appendChild(c);
+
+   setTimeout(()=>c.remove(),3500);
+ }
+}
+
+/* =========================================================
+   SAFE BASE64 FOR EMOJIS + HINDI + NORMAL TEXT
+========================================================= */
+function base64Unicode(str){
+
+ const bytes=new TextEncoder().encode(str);
+
+ let binary="";
+
+ bytes.forEach(byte=>{
+   binary+=String.fromCharCode(byte);
+ });
+
+ return btoa(binary)
+   .replace(/\+/g,"-")
+   .replace(/\//g,"_")
+   .replace(/=+$/,"");
+}
+
+function fromBase64Unicode(str){
+
+ str=str.replace(/-/g,"+").replace(/_/g,"/");
+
+ while(str.length%4)str+="=";
+
+ const binary=atob(str);
+
+ const bytes=Uint8Array.from(
+   binary,
+   c=>c.charCodeAt(0)
+ );
+
+ return new TextDecoder().decode(bytes);
+}
+
+/* =========================================================
+   HTML ESCAPING
+========================================================= */
+function escapeHTML(text){
+
+ const div=document.createElement("div");
+ div.textContent=String(text);
+
+ return div.innerHTML;
+}
+</script>
+
+</body>
+</html>
